@@ -191,16 +191,16 @@
 
 // const person = getOldest(Players)
 
-interface IPost {
-  title: string;
-  description: string;
-  id: number;
-}
-interface IUser {
-  id: number;
-  name: string;
-  age: number;
-}
+// interface IPost {
+//   title: string;
+//   description: string;
+//   id: number;
+// }
+// interface IUser {
+//   id: number;
+//   name: string;
+//   age: number;
+// }
 
 // const fetchPostData = async(path:string):Promise<IPost[]>=>{
 //     const response = await fetch(`http://example.com/${path}`);
@@ -212,10 +212,10 @@ interface IUser {
 //     return response.json();
 // }
 
-const fetchData = async <Result>(path: string): Promise<Result> => {
-  const response = await fetch(`http://example.com/${path}`);
-  return response.json();
-};
+// const fetchData = async <Result>(path: string): Promise<Result> => {
+//   const response = await fetch(`http://example.com/${path}`);
+//   return response.json();
+// };
 
 // (async()=>{
 //     const posts = await fetchPostData("posts");
@@ -227,7 +227,44 @@ const fetchData = async <Result>(path: string): Promise<Result> => {
 //     return users[0].name
 // })();
 
-(async () => {
-  const users = await fetchData<IUser[]>("users");
-  users[0].age
-})();
+// (async () => {
+//   const users = await fetchData<IUser[]>("users");
+//   users[0].age
+// })();
+
+/* Structural Typing or Duck Typing */
+
+interface ICredential {
+    name:string
+    password:string
+    isAdmin?:boolean
+}
+
+const login = (credential:ICredential):boolean=>{
+    console.log(credential)
+    return true
+}
+
+const user = {
+    name:"Manjesh",
+    password: "0327EY8DGCBA",
+    isAdmin:true
+}
+
+login(user)
+
+interface IAuth {
+    username:string;
+    password:string;
+    login(username:string,password:string):boolean|void
+}
+
+const auth:IAuth = {
+    username:"mks",
+    password:"0938euyhf",
+    login(username:string,password:string){
+
+    }
+}
+
+let num = 1; // Automatically detected as number, typescript power💪💪
